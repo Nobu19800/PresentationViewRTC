@@ -24,7 +24,7 @@ http://www17.atpages.jp/~aitech/wiki/?OpenRTM%2FControl%2Flist
 
 void portConnect(PortService_ptr p1, PortService_var p2)
 {
-	string subs_type = "flush";
+	string subs_type = "new";
 	string period = "";
 
 	coil::UUID_Generator *m_uuid = new coil::UUID_Generator();
