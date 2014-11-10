@@ -28,7 +28,7 @@
 #include <rtm/RTObject.h>
 #include <rtm/CorbaConsumer.h>
 
-#include "MyObject.h"
+#include "SubFunction.h"
 
 
 // Service implementation headers

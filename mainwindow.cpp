@@ -52,26 +52,26 @@ MainWindow::MainWindow()
 	layout->addWidget(gv);
 
 	QVBoxLayout *b_layout = new QVBoxLayout;
-	PageGB = new QPushButton(tc->toUnicode("ページを進める"));
-	b_layout->addWidget(PageGB);
-	connect(PageGB, SIGNAL(clicked()), this, SLOT(PageGclickedSlot()));
-	PageRB = new QPushButton(tc->toUnicode("ページを戻す"));
-	b_layout->addWidget(PageRB);
-	connect(PageRB, SIGNAL(clicked()), this, SLOT(PageRclickedSlot()));
-	EffGB = new QPushButton(tc->toUnicode("アニメーションを実行"));
-	b_layout->addWidget(EffGB);
-	connect(EffGB, SIGNAL(clicked()), this, SLOT(EffGclickedSlot()));
-	EffRB = new QPushButton(tc->toUnicode("アニメーションを戻す"));
-	b_layout->addWidget(EffRB);
-	connect(EffRB, SIGNAL(clicked()), this, SLOT(EffRclickedSlot()));
+	pageGB = new QPushButton(tc->toUnicode("ページを進める"));
+	b_layout->addWidget(pageGB);
+	connect(pageGB, SIGNAL(clicked()), this, SLOT(pageGclickedSlot()));
+	pageRB = new QPushButton(tc->toUnicode("ページを戻す"));
+	b_layout->addWidget(pageRB);
+	connect(pageRB, SIGNAL(clicked()), this, SLOT(pageRclickedSlot()));
+	effGB = new QPushButton(tc->toUnicode("アニメーションを実行"));
+	b_layout->addWidget(effGB);
+	connect(effGB, SIGNAL(clicked()), this, SLOT(effGclickedSlot()));
+	effRB = new QPushButton(tc->toUnicode("アニメーションを戻す"));
+	b_layout->addWidget(effRB);
+	connect(effRB, SIGNAL(clicked()), this, SLOT(effRclickedSlot()));
 
-	SaveSB = new QPushButton(tc->toUnicode("動画を保存を開始"));
-	b_layout->addWidget(SaveSB);
-	connect(SaveSB, SIGNAL(clicked()), this, SLOT(SaveSclickedSlot()));
+	saveSB = new QPushButton(tc->toUnicode("動画を保存を開始"));
+	b_layout->addWidget(saveSB);
+	connect(saveSB, SIGNAL(clicked()), this, SLOT(saveSclickedSlot()));
 
 	SaveEB = new QPushButton(tc->toUnicode("動画の保存を終了"));
 	b_layout->addWidget(SaveEB);
-	connect(SaveEB, SIGNAL(clicked()), this, SLOT(SaveEclickedSlot()));
+	connect(SaveEB, SIGNAL(clicked()), this, SLOT(saveEclickedSlot()));
 	
 
 	QVBoxLayout *fpsLayout = new QVBoxLayout();
@@ -103,19 +103,19 @@ MainWindow::MainWindow()
 
 	b_layout->addWidget(grtcTable);
 
-	UpdateB = new QPushButton(tc->toUnicode("更新"));
-	b_layout->addWidget(UpdateB);
-	connect(UpdateB, SIGNAL(clicked()), this, SLOT(UpdateclickedSlot()));
+	updateB = new QPushButton(tc->toUnicode("更新"));
+	b_layout->addWidget(updateB);
+	connect(updateB, SIGNAL(clicked()), this, SLOT(updateclickedSlot()));
 
-	ConnectB = new QPushButton(tc->toUnicode("接続"));
-	b_layout->addWidget(ConnectB);
-	connect(ConnectB, SIGNAL(clicked()), this, SLOT(ConnectclickedSlot()));
+	connectB = new QPushButton(tc->toUnicode("接続"));
+	b_layout->addWidget(connectB);
+	connect(connectB, SIGNAL(clicked()), this, SLOT(connectclickedSlot()));
 
 	
 
 }
 
-void MainWindow::PageGclickedSlot()
+void MainWindow::pageGclickedSlot()
 {
 	if(comp != NULL)
 	{
@@ -123,7 +123,7 @@ void MainWindow::PageGclickedSlot()
 	}
 }
 
-void MainWindow::PageRclickedSlot()
+void MainWindow::pageRclickedSlot()
 {
 	if(comp != NULL)
 	{
@@ -131,7 +131,7 @@ void MainWindow::PageRclickedSlot()
 	}
 }
 
-void MainWindow::EffGclickedSlot()
+void MainWindow::effGclickedSlot()
 {
 	if(comp != NULL)
 	{
@@ -139,7 +139,7 @@ void MainWindow::EffGclickedSlot()
 	}
 }
 
-void MainWindow::EffRclickedSlot()
+void MainWindow::effRclickedSlot()
 {
 	if(comp != NULL)
 	{
@@ -148,7 +148,7 @@ void MainWindow::EffRclickedSlot()
 }
 
 
-void MainWindow::SaveSclickedSlot()
+void MainWindow::saveSclickedSlot()
 {
 	if(!gv->saveVideo)
 	{
@@ -163,7 +163,7 @@ void MainWindow::SaveSclickedSlot()
 	}
 }
 
-void MainWindow::SaveEclickedSlot()
+void MainWindow::saveEclickedSlot()
 {
 	if(gv->saveVideo)
 	{
@@ -174,7 +174,7 @@ void MainWindow::SaveEclickedSlot()
 	}
 }
 
-void MainWindow::UpdateclickedSlot()
+void MainWindow::updateclickedSlot()
 {
 	grtcTable->clear();
 	
@@ -196,7 +196,7 @@ void MainWindow::UpdateclickedSlot()
 
 }
 
-void MainWindow::ConnectclickedSlot()
+void MainWindow::connectclickedSlot()
 {
 	if(comp)
 	{

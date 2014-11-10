@@ -35,15 +35,15 @@ public:
      * @brief コンストラクタ
      */
     MainWindow();
-	QPushButton *PageGB;	/**<　@brief  */
-	QPushButton *PageRB;	/**<　@brief  */
-	QPushButton *EffGB;	/**<　@brief  */
-	QPushButton *EffRB;	/**<　@brief  */
-	QPushButton *SaveSB;	/**<　@brief  */
+	QPushButton *pageGB;	/**<　@brief  */
+	QPushButton *pageRB;	/**<　@brief  */
+	QPushButton *effGB;	/**<　@brief  */
+	QPushButton *effRB;	/**<　@brief  */
+	QPushButton *saveSB;	/**<　@brief  */
 	QPushButton *SaveEB;	/**<　@brief  */
 	QSpinBox *fpsSB;	/**<　@brief  */
-	QPushButton *UpdateB;	/**<　@brief  */
-	QPushButton *ConnectB;	/**<　@brief  */
+	QPushButton *updateB;	/**<　@brief  */
+	QPushButton *connectB;	/**<　@brief  */
 	QTableWidget *grtcTable;	/**<　@brief  */
 	
 
@@ -55,35 +55,35 @@ public slots:
 	/*!
      * @brief スライドを進めるボタンを押したときのスロット
      */
-    void PageGclickedSlot();
+    void pageGclickedSlot();
 	/*!
      * @brief スライドを戻るボタンを押したときのスロット
      */
-	void PageRclickedSlot();
+	void pageRclickedSlot();
 	/*!
      * @brief アニメーションを進めるボタンを押したときのスロット
      */
-	void EffGclickedSlot();
+	void effGclickedSlot();
 	/*!
      * @brief アニメーションを戻るボタンを押したときのスロット
      */
-	void EffRclickedSlot();
+	void effRclickedSlot();
 	/*!
      * @brief 動画を保存するボタンを押したときのスロット
      */
-	void SaveSclickedSlot();
+	void saveSclickedSlot();
 	/*!
      * @brief 動画の保存を終了するボタンを押したときのスロット
      */
-	void SaveEclickedSlot();
+	void saveEclickedSlot();
 	/*!
      * @brief 動画リストの更新ボタンを押したときのスロット
      */
-	void UpdateclickedSlot();
+	void updateclickedSlot();
 	/*!
      * @brief データポート接続ボタンを押したときのスロット
      */
-	void ConnectclickedSlot();
+	void connectclickedSlot();
 	
 
 private:

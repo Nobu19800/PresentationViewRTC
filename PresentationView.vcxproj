@@ -135,7 +135,7 @@
     <ClCompile Include="DataBaseDynSK.cc" />
     <ClCompile Include="DataBaseSK.cc" />
     <ClCompile Include="ImageDataCom.cpp" />
-    <ClCompile Include="MyObject.cpp" />
+    <ClCompile Include="SubFunction.cpp" />
     <ClCompile Include="PresentationView.cpp" />
     <ClCompile Include="PresentationViewComp.cpp" />
     <ClCompile Include="graphicsview.cpp" />
@@ -144,7 +144,7 @@
   <ItemGroup>
     <ClInclude Include="DataBaseStub.h" />
     <ClInclude Include="ImageDataCom.h" />
-    <ClInclude Include="MyObject.h" />
+    <ClInclude Include="SubFunction.h" />
     <ClInclude Include="PresentationView.h" />
     <CustomBuild Include="graphicsview.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">graphicsview.h;%(AdditionalInputs)</AdditionalInputs>

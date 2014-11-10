@@ -1,11 +1,11 @@
 /*!
- * @file  MyObject.cpp
+ * @file  SubFunction.cpp
  * @brief •¶š—ñ‚Ì‘€ì“™
  *
  */
 
 
-#include "MyObject.h"
+#include "SubFunction.h"
 
 using namespace std;
 
