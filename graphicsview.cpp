@@ -48,7 +48,10 @@ GraphicsView::GraphicsView(QWidget *parent) : QGraphicsView(parent)
 	my_timer->start(m_rate);
 
 	iplimage = NULL;
+	resizeimage = NULL;
 	vw = NULL;
+
+	m_scale = 1.0;
 	
 }
 
@@ -106,18 +109,27 @@ void GraphicsView::paintEvent(QPaintEvent *)
 				}
 
 				cvReleaseImage(&iplimage);
+				
 			}
+			if(resizeimage != NULL)
+				cvReleaseImage(&resizeimage);
 			iplimage = GetCameraImage(m_image);
-			setMinimumSize(m_image->width, m_image->height);
-			setMaximumSize(m_image->width, m_image->height);			
+			int t_width = m_image->width*m_scale;
+			int t_height = m_image->height*m_scale;
+			resizeimage = cvCreateImage(cvSize(t_width, t_height), IPL_DEPTH_8U, 3);
+			cvResize(iplimage, resizeimage);
+			setMinimumSize(t_width, t_height);
+			setMaximumSize(t_width, t_height);
+			//setMinimumSize( m_image->width, m_image->height);
+			//setMaximumSize( m_image->width, m_image->height);
 
 		}
 	}
 
-	if(iplimage != NULL)
+	if(resizeimage != NULL)
 	{
 		cv::Mat src, dst;
-		src = cv::cvarrToMat(iplimage);
+		src = cv::cvarrToMat(resizeimage);
 		//src = cv::imread("sample.jpg");
 		cv::cvtColor(src, dst, CV_RGB2BGR);
 		QImage img(dst.data, dst.cols, dst.rows, dst.step, QImage::Format_RGB888);
@@ -139,4 +151,33 @@ void GraphicsView::startSaveVideo(int fps, const char* fn)
 	file_path = fn;
 	saveVideo = true;
 	my_timer->start(m_rate);
+}
+
+void GraphicsView::mousePressEvent(QMouseEvent *e)
+{
+	
+}
+
+void GraphicsView::mouseReleaseEvent(QMouseEvent *e)
+{
+	
+	if(e->button() == Qt::LeftButton)
+	{
+		if(comp != NULL)
+		{
+			
+			comp->putPenData(&posList);
+		}
+		posList.clear();
+	}
+}
+
+void GraphicsView::mouseMoveEvent(QMouseEvent *e)
+{
+	if(e->buttons() & Qt::LeftButton)
+	{
+		
+		posList.push_back(e->pos().x()/m_scale);
+		posList.push_back(e->pos().y()/m_scale);
+	}
 }

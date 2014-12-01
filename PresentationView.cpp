@@ -38,8 +38,9 @@ static const char* presentationview_spec[] =
 PresentationView::PresentationView(RTC::Manager* manager)
     // <rtc-template block="initializer">
   : RTC::DataFlowComponentBase(manager),
-    m_EffectNumberOutOut("m_EffectNumberOut", m_EffectNumberOut),
-	m_SlideNumberOutOut("m_SlideNumberOut", m_SlideNumberOut),
+    m_EffectNumberOutOut("EffectNumberOut", m_EffectNumberOut),
+	m_SlideNumberOutOut("SlideNumberOut", m_SlideNumberOut),
+	m_PenOut("Pen", m_Pen),
     m_imageIn("image", m_image),
 	m_DataBasePort("DataBase")
 
@@ -63,8 +64,9 @@ RTC::ReturnCode_t PresentationView::onInitialize()
   // Registration: InPort/OutPort/Service
   // <rtc-template block="registration">
   // Set InPort buffers
-  addOutPort("m_SlideNumberOut", m_SlideNumberOutOut);
-  addOutPort("m_EffectNumberOut", m_EffectNumberOutOut);
+  addOutPort("SlideNumberOut", m_SlideNumberOutOut);
+  addOutPort("EffectNumberOut", m_EffectNumberOutOut);
+  addOutPort("Pen", m_PenOut);
   addInPort("image", m_imageIn);
 
   m_DataBasePort.registerConsumer("database", "DataBase::mDataBase", m_database);
@@ -129,6 +131,20 @@ int PresentationView::getRate()
 	return (int)(1/ecs[(CORBA::ULong)0]->get_rate());
 }
 
+void PresentationView::putPenData(std::vector<int>*dt)
+{
+	
+	if(dt->size() > 3)
+	{
+		m_Pen.data.length(dt->size());
+		for(int i=0;i < dt->size();i++)
+		{
+			m_Pen.data[i] = (*dt)[i];
+		}
+		m_PenOut.write();
+	}
+}
+
 RTC::ReturnCode_t PresentationView::onDeactivated(RTC::UniqueId ec_id)
 {
   return RTC::RTC_OK;
@@ -139,7 +155,10 @@ RTC::ReturnCode_t PresentationView::onExecute(RTC::UniqueId ec_id)
 {
 	if(m_imageIn.isNew())
 	{
+		//coil::TimeValue t1(coil::gettimeofday());
 		m_imageIn.read();
+		//coil::TimeValue t2(coil::gettimeofday());
+		//std::cout << t2 - t1 << std::endl;
 		imageIsNew = true;
 	}
   return RTC::RTC_OK;

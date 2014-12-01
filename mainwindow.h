@@ -40,8 +40,9 @@ public:
 	QPushButton *effGB;	/**<　@brief  */
 	QPushButton *effRB;	/**<　@brief  */
 	QPushButton *saveSB;	/**<　@brief  */
-	QPushButton *SaveEB;	/**<　@brief  */
+	QPushButton *saveEB;	/**<　@brief  */
 	QSpinBox *fpsSB;	/**<　@brief  */
+	QSpinBox *scaleSB;	/**<　@brief  */
 	QPushButton *updateB;	/**<　@brief  */
 	QPushButton *connectB;	/**<　@brief  */
 	QTableWidget *grtcTable;	/**<　@brief  */
@@ -84,6 +85,10 @@ public slots:
      * @brief データポート接続ボタンを押したときのスロット
      */
 	void connectclickedSlot();
+	/*!
+     * @brief 拡大率スピンボックスの値が変化したときのスロット
+     */
+	void scalevalueChangedSlot(int v);
 	
 
 private:

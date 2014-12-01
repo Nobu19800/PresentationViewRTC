@@ -69,14 +69,27 @@ MainWindow::MainWindow()
 	b_layout->addWidget(saveSB);
 	connect(saveSB, SIGNAL(clicked()), this, SLOT(saveSclickedSlot()));
 
-	SaveEB = new QPushButton(tc->toUnicode("“®‰æ‚Ì•Û‘¶‚ðI—¹"));
-	b_layout->addWidget(SaveEB);
-	connect(SaveEB, SIGNAL(clicked()), this, SLOT(saveEclickedSlot()));
+	saveEB = new QPushButton(tc->toUnicode("“®‰æ‚Ì•Û‘¶‚ðI—¹"));
+	b_layout->addWidget(saveEB);
+	connect(saveEB, SIGNAL(clicked()), this, SLOT(saveEclickedSlot()));
+
+	
+
+	QVBoxLayout *scaleLayout = new QVBoxLayout();
+	QLabel *scaleLabel = new QLabel(tc->toUnicode("Šg‘å—¦(“)"));
+	scaleLayout->addWidget(scaleLabel);
+	scaleSB = new QSpinBox();
+	scaleSB->setMaximum(1000);
+	scaleSB->setMinimum(1);
+	scaleSB->setValue(100);
+	scaleLayout->addWidget(scaleSB);
+	connect(scaleSB, SIGNAL(valueChanged(int)), this, SLOT(scalevalueChangedSlot(int)));
+	b_layout->addLayout(scaleLayout);
 	
 
 	QVBoxLayout *fpsLayout = new QVBoxLayout();
-	QLabel *Label = new QLabel(tc->toUnicode("FPS"));
-	fpsLayout->addWidget(Label);
+	QLabel *fpsLabel = new QLabel(tc->toUnicode("FPS"));
+	fpsLayout->addWidget(fpsLabel);
 	fpsSB = new QSpinBox();
 	fpsSB->setMaximum(1000);
 	fpsSB->setMinimum(1);
@@ -215,4 +228,10 @@ void MainWindow::connectclickedSlot()
 			msgBox.exec();
 		}
 	}
+}
+
+void MainWindow::scalevalueChangedSlot(int v)
+{
+	gv->m_scale = (float)v/100.0;
+	
 }

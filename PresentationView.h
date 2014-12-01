@@ -119,6 +119,11 @@ class PresentationView
    */
   int getRate();
   /*!
+   * @brief 線データ出力
+   * @param dt 描画点
+   */
+  void putPenData(std::vector<int>*dt);
+  /*!
    * @brief データベースに登録された動画リストを取得
    * @return 動画リスト
    */
@@ -338,6 +343,11 @@ class PresentationView
   /*!
    */
   OutPort<TimedShort> m_EffectNumberOutOut;
+
+  TimedShortSeq m_Pen;
+  /*!
+   */
+  OutPort<TimedShortSeq> m_PenOut;
   
   // </rtc-template>
 

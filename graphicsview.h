@@ -31,6 +31,7 @@ class GraphicsView : public QGraphicsView {
 private:
 	class QTimer * my_timer;	/**<　@brief  */
 	IplImage* iplimage;	/**<　@brief  */
+	IplImage* resizeimage;	/**<　@brief  */
 	CvVideoWriter *vw;	/**<　@brief  */
 
 public:
@@ -53,13 +54,27 @@ public:
 	bool saveVideo;	/**<　@brief  */
 	int m_rate;	/**<　@brief  */
 	std::string file_path;	/**<　@brief  */
+	std::vector<int> posList;	/**<　@brief  */
+	float m_scale;	/**<　@brief  */
 	
 	/*!
      * @brief 描画イベント
      */
 	void paintEvent(QPaintEvent *);
 	
-
+protected:
+	/*!
+     * @brief マウスボタンクリック時のイベント
+     */
+	void mousePressEvent(QMouseEvent *e);
+	/*!
+     * @brief マウスボタンリリース時のイベント
+     */
+	void mouseReleaseEvent(QMouseEvent *e);
+	/*!
+     * @brief マウス移動時のイベント
+     */
+	void mouseMoveEvent(QMouseEvent *e);
 public slots:
 	/*!
      * @brief 一定周期で呼び出されるスロット
