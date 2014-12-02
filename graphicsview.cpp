@@ -116,7 +116,7 @@ void GraphicsView::paintEvent(QPaintEvent *)
 			iplimage = GetCameraImage(m_image);
 			int t_width = m_image->width*m_scale;
 			int t_height = m_image->height*m_scale;
-			resizeimage = cvCreateImage(cvSize(t_width, t_height), IPL_DEPTH_8U, 3);
+			resizeimage = cvCreateImage(cvSize(t_width, t_height), iplimage->depth, iplimage->nChannels);
 			cvResize(iplimage, resizeimage);
 			setMinimumSize(t_width, t_height);
 			setMaximumSize(t_width, t_height);
