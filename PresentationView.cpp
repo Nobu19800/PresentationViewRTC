@@ -266,56 +266,64 @@ bool PresentationView::getRTC(std::vector<std::string> name, std::vector<OtherPo
 	return false;
 }
 
+bool PresentationView::connectDPorts(std::string m_path, std::string pname, PortService_ptr p1)
+{
+	std::vector<std::string> vrp = split(m_path, "\\");
+	if(vrp.size() > 1)
+	{
+			
+		RTC::CorbaNaming namingserver(m_manager->getORB(), vrp[0].c_str());
+		TreeObject *to = new TreeObject(vrp[0].c_str());
+		std::vector<OtherPort> ops;
+			
+		rtc_get_rtclist(namingserver, ops, to, vrp[0]);
+			
+		RTC::PortService_var p;
+		std::vector<std::string> s;
+		OtherPort op = OtherPort(p, s);
+		vrp.push_back(pname);
+			
+		if(getRTC(vrp, ops, op))
+		{
+				
+			//std::string tname = op.pb->get_port_profile()->name;
+				
+			PortService_var p = op.pb;
+			//std::vector<std::string> pn = split(tname, ".");
+			portConnect(p1, p);
+				
+			return true;
+				
+		}
+			
+		
+	}
+	return false;
+}
+
 bool PresentationView::connectDPort(const char *name, std::vector<std::vector<std::string>> m_List)
 {
 	m_imageIn.disconnect_all();
+	m_SlideNumberOutOut.disconnect_all();
+	m_EffectNumberOutOut.disconnect_all();
+	m_PenOut.disconnect_all();
 
 	
 	std::vector<std::string> rp = getPath(name, m_List);
 	
-	if(rp.size() >= 3)
+	if(rp.size() >= 7)
 	{
-		
-		std::vector<std::string> vrp = split(rp[1], "\\");
-		if(vrp.size() > 1)
+		if(!connectDPorts(rp[1],rp[2],m_imageIn.getPortRef()))
+			return false;
+		if(rp[3] != "None")
 		{
-			
-			RTC::CorbaNaming namingserver(m_manager->getORB(), vrp[0].c_str());
-			TreeObject *to = new TreeObject(vrp[0].c_str());
-			std::vector<OtherPort> ops;
-			
-			rtc_get_rtclist(namingserver, ops, to, vrp[0]);
-			
-			RTC::PortService_var p;
-			std::vector<std::string> s;
-			OtherPort op = OtherPort(p, s);
-			vrp.push_back(rp[2]);
-			
-			if(getRTC(vrp, ops, op))
-			{
-				
-				
-				
-				
-				
-				//std::string tname = op.pb->get_port_profile()->name;
-				
-				PortService_var p = op.pb;
-				//std::vector<std::string> pn = split(tname, ".");
-				portConnect(m_imageIn.getPortRef(), p);
-				
-
-				
-			}
-			
-			/*for(int i=0;i < vrp.size();i++)
-			{
-				
-				std::cout << vrp[i] << std::endl;
-			}*/
+			connectDPorts(rp[3],rp[4],m_SlideNumberOutOut.getPortRef());
+			connectDPorts(rp[3],rp[5],m_EffectNumberOutOut.getPortRef());
+			connectDPorts(rp[3],rp[6],m_PenOut.getPortRef());
 		}
+		
 	}
-	return false;
+	return true;
 }
 
 std::vector<std::vector<std::string>> PresentationView::getList()
@@ -345,6 +353,10 @@ std::vector<std::vector<std::string>> PresentationView::getList()
 			//std::cout << sv[0] << std::endl;
 			sv.push_back(m_database._ptr()->getString(m_uuidstr.c_str(),2));
 			sv.push_back(m_database._ptr()->getString(m_uuidstr.c_str(),3));
+			sv.push_back(m_database._ptr()->getString(m_uuidstr.c_str(),4));
+			sv.push_back(m_database._ptr()->getString(m_uuidstr.c_str(),5));
+			sv.push_back(m_database._ptr()->getString(m_uuidstr.c_str(),6));
+			sv.push_back(m_database._ptr()->getString(m_uuidstr.c_str(),7));
 			m_list.push_back(sv);
 		}
 	}

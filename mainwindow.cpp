@@ -219,7 +219,12 @@ void MainWindow::connectclickedSlot()
 			QTableWidgetItem *twi = twis[0];
 			QByteArray ba = twi->text().toLocal8Bit();
 			
-			comp->connectDPort(ba, m_result);
+			if(!comp->connectDPort(ba, m_result))
+			{
+				QMessageBox msgBox(this);
+				msgBox.setText(tc->toUnicode("Ú‘±‚ÉŽ¸”s‚µ‚Ü‚µ‚½"));
+				msgBox.exec();
+			}
 		}
 		else
 		{

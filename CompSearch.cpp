@@ -34,8 +34,8 @@ void portConnect(PortService_ptr p1, PortService_var p2)
 
 	
 
-	p1->disconnect_all();
-	p2->disconnect_all();
+	//p1->disconnect_all();
+	//p2->disconnect_all();
 
 	string ConnectName = m_uuidstr;
 	

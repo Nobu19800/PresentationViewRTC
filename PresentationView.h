@@ -136,6 +136,13 @@ class PresentationView
    */
   bool connectDPort(const char *name, std::vector<std::vector<std::string>> m_List);
   /*!
+   * @brief データポートを接続
+   * @param m_path RTCのパス
+   * @param pname データポート名
+   * @return 成功した場合True、失敗した場合False
+   */
+  bool connectDPorts(std::string m_path, std::string pname, PortService_ptr p1);
+  /*!
    * @brief 動画リストから名前で動画の情報を取得
    * @param name 動画の名前
    * @param m_List 動画リスト
