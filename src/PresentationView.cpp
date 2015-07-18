@@ -21,7 +21,7 @@ static const char* presentationview_spec[] =
     "description",       "Presentation View Component",
     "version",           "1.0.0",
     "vendor",            "Miyamoto Nobuhiko",
-    "category",          "Category",
+    "category",          "Presentation",
     "activity_type",     "PERIODIC",
     "kind",              "DataFlowComponent",
     "max_instance",      "1",
