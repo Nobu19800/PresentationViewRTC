@@ -1,4 +1,7 @@
 set(hdrs PresentationView.h
+	mainwindow.h
+	graphicsview.h
+	SubFunction.h
     PARENT_SCOPE
     )
 

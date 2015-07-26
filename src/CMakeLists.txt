@@ -44,7 +44,7 @@ add_definitions(${OMNIORB_CFLAGS})
 
 
 
-add_definitions(-D_NOMINMAX)
+add_definitions(-DNOMINMAX)
 
 
 
